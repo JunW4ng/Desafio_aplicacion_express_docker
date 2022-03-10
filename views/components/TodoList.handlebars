@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row row-cols-4">
+    <div class="col">Name</div>
+    <div class="col">Description</div>
+    <div class="col">Date</div>
+    <div class="col"></div>
+  </div>
+</div>
+<hr>
+{{#each data}}
+  <div class="container">
+    <div class="row row-cols-4">
+      <div class="col">{{this.name}}</div>
+      <div class="col">{{this.description}}</div>
+      <div class="col">DATE</div>
+      <div class="col">Column</div>
+    </div>
+  </div>
+{{/each}}
