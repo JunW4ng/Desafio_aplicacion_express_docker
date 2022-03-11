@@ -1,5 +1,5 @@
 # Versión de node con la que correrá la aplicación web
-FROM node:14
+FROM node:alpine
 
 # Creamos un directorio interno en el contenedor donde se copiara nuestra aplicación web
 WORKDIR /usr/src/app
@@ -17,4 +17,4 @@ RUN npm install
 COPY . .
 
 EXPOSE 3000
-CMD [ "node", "index.js" ]
+CMD [ "node", "server.js" ]
