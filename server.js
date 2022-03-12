@@ -1,32 +1,19 @@
 const express = require("express");
-const { v4: uuidv4 } = require("uuid");
+const bodyParser = require("body-parser");
 const { engine } = require("express-handlebars");
-const { getTodos, createTodo } = require("./queries");
-const port = 3000;
+const api = require("./routes/api");
+const front = require("./routes/front");
 
-const id = uuidv4();
+const port = process.env.PORT || 4000;
 const app = express();
 
+app.engine("handlebars", engine());
 app.set("view engine", "handlebars");
-app.engine(
-  "handlebars",
-  engine({
-    layoutsDir: __dirname + "/views/layouts",
-    partialsDir: __dirname + "/views/components",
-  })
-);
+app.set("views", "./views");
 
-//? Muestra todos
-app.get("/", async (req, res) => {
-  const todos = await getTodos();
-  console.log(todos);
-  res.render("Dashboard", { data: todos });
-});
-
-//? Crea un todo
-app.post('/todo-create', async(req, res)=>{
-  const {} = req.body
-  const todo = await createTodo()
-})
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(api);
+app.use(front);
 
 app.listen(port, () => console.log(`Escuchando puerto ${port}`));
