@@ -4,7 +4,7 @@ const { engine } = require("express-handlebars");
 const api = require("./routes/api");
 const front = require("./routes/front");
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 5000;
 const app = express();
 
 app.engine("handlebars", engine());
